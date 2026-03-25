@@ -53,7 +53,7 @@ async function loginHanlde(req, res) {
 
     if (!user) {
         return res.status(400).json({
-            message: "user not exitss "
+            message: "user not exitss"
         })
     }
 
@@ -103,7 +103,21 @@ async function logoutHandle(req, res) {
 
 }
 
+async function getmeUser(req, res) {
+
+    const user = await userModel.findById(req.user.id)
+
+    res.status(200).json({
+        user: {
+            id: user._id,
+            username: user.username,
+            email: user.email
+        }
+    })
+
+}
+
 module.exports = {
-    registerHandle, loginHanlde, logoutHandle
+    registerHandle, loginHanlde, logoutHandle, getmeUser
 }
 
