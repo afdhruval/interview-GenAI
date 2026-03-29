@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import "../styles/Form.scss"
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth.jsx'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
   const { loading, handleLogin } = useAuth()
+
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -14,9 +17,11 @@ const Login = () => {
     e.preventDefault()
 
     handleLogin({ email, password })
+
+    navigate("/")
   }
 
-  if(loading){
+  if (loading) {
     return (
       <main>
         <h1>Loadding..........</h1>

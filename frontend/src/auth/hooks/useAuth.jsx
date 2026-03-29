@@ -7,13 +7,13 @@ export const useAuth = () => {
 
     const context = useContext(authContext)
 
-    const { user, setuser, loading, setLoading } = context
+    const { user, setUser, loading, setLoading } = context
 
     const handleLogin = async ({ email, password }) => {
         setLoading(true)
         try {
             const data = await loginUser({ email, password })
-            setuser(data.user)
+            setUser(data.user)
         } catch (err) {
             console.log(err);
         } finally {
@@ -25,7 +25,7 @@ export const useAuth = () => {
         setLoading(true)
         try {
             const data = await registerUser({ email, username, password })
-            setuser(data.user)
+            setUser(data.user)
         } catch (err) {
             console.log(err);
         } finally {
@@ -37,7 +37,7 @@ export const useAuth = () => {
         setLoading(true)
         try {
             const data = await logout()
-            setuser(null)
+            setUser(null)
         } catch (err) {
             console.log(err);
         } finally {
