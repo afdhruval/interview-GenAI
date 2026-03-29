@@ -1,16 +1,25 @@
-const GoogleGenAI = require("@google/genai")
+const { GoogleGenAI } = require("@google/genai");
 
 const ai = new GoogleGenAI({
     apiKey: process.env.GOOGLE_API_KEY
-})
+});
 
 async function genaiWork() {
-    const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        content: "hello,gemini what is interview"
-    })
+    try {
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-flash",
+            contents: "Hello Gemini, what is an interview?"
+        });
 
-    console.log(response.text);
-
+        console.log(response.text);
+    } catch (error) {
+        console.error("Error generating content:", error.message);
+    }
 }
-module.exports = genaiWork
+
+// run directly (for testing)
+if (require.main === module) {
+    genaiWork();
+}
+
+module.exports = genaiWork;
