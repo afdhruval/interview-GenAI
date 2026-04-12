@@ -1,25 +1,14 @@
 const { GoogleGenAI } = require("@google/genai");
+import { z } from "zod"
+import { zodToJsonSchema } from "zod-to-json-schema";
 
 const ai = new GoogleGenAI({
     apiKey: process.env.GOOGLE_API_KEY
-}); 
+});
 
-async function genaiWork() {
-    try {
-        const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
-            contents: "Hello Gemini, what is an interview?"
-        });
 
-        console.log(response.text);
-    } catch (error) {
-        console.error("Error generating content:", error.message);
-    }
+async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
+    
 }
 
-// run directly (for testing)
-if (require.main === module) {
-    genaiWork();
-}
-
-module.exports = genaiWork;
+// module.exports = genaiWork;
